@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home),
     path("createNote/", views.createNote),
+    path("delete/<int:id>/", views.deleteNote),
 ]

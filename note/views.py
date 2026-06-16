@@ -3,9 +3,9 @@ from django.http import HttpResponse
 from .models import Note
 # Create your views here.
 def home(request):
-    message = "Your balance is : 50000 DZD"
+    notes = Note.objects.all()
     context = {
-        'message':message
+        'notes':notes
     }
     return render(request, "index.html", context)
 
@@ -17,3 +17,8 @@ def createNote(request):
         note = Note.objects.all()
         note.create(title=title, content=content)
     return render(request, 'createNote.html')
+
+def deleteNote(request, id):
+    note = Note.objects.get(id=id)
+    note.delete()
+    return redirect(home)
